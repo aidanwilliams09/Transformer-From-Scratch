@@ -110,7 +110,6 @@ class Transformer(nn.Module):
         num_heads: int,
         dim_feedforward: int,
         dropout: float,
-        activation: nn.Module = nn.ReLU
     ):
         super(Transformer, self).__init__()
         

@@ -36,7 +36,7 @@ class Residual(nn.Module):
 
 
     def forward(self, *tensors: torch.Tensor) -> torch.Tensor:
-        return self.layer_norm(tensors[0] + self.dropout(self.sublayer(tensors)))
+        return self.layer_norm(tensors[0] + self.dropout(self.sublayer(*tensors)))
 
 
 class AttentionHead(nn.Module):
