@@ -1,7 +1,6 @@
 import torch
 from torch import nn
-import transformer_helpers
-from transformer_helpers import (Residual,
+from transformer_552.transformer_helpers import (Residual,
                                  MultiHeadAttention,
                                  feed_forward,
                                  position_encoding)
