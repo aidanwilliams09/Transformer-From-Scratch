@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
     
 setuptools.setup(
     name='transformer',
-    version='0.0.5',
+    version='0.0.6',
     author='552 Group 2',
     author_email='aidan.williams@mail.mcgill.ca',
     description='Transformer model for weather prediction',
