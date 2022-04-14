@@ -10,7 +10,11 @@ def scaled_dot_prod(query: torch.Tensor, key: torch.Tensor, value: torch.Tensor)
     return softmax.bmm(value)
 
 
-def position_encoding(seq_len: int, dim_model: int, device: torch.device = torch.device("cpu")) -> torch.Tensor:
+def position_encoding(
+    seq_len: int,
+    dim_model: int,
+    device: torch.device = torch.device("cuda" if torch.cuda().is_available() else "cpu")
+) -> torch.Tensor:
     pos = torch.arange(seq_len, dtype=torch.float, device=device).reshape(1, -1, 1)
     i = torch.arange(dim_model, dtype=torch.float, device=device).reshape(1, 1, -1)
     phase = pos / (1e4 ** (torch.div(i, 2, rounding_mode='floor') / dim_model))
