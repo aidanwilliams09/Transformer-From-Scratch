@@ -71,11 +71,11 @@ class TransformerEncoder(nn.Module):
 
     def forward(self, src: torch.Tensor) -> torch.Tensor:
         seq_len, dimension = src.size(1), src.size(2)
-        src += position_encoding(seq_len, dimension)
+        x = src + position_encoding(seq_len, dimension)
         for layer in self.layers:
-            src = layer(src)
+            x = layer(x)
 
-        return src
+        return x
 
 
 class TranformerDecoder(nn.Module):
@@ -93,11 +93,11 @@ class TranformerDecoder(nn.Module):
 
     def forward(self, tgt: torch.Tensor, memory: torch.Tensor) -> torch.Tensor:
         seq_len, dimension = tgt.size(1), tgt.size(2)
-        tgt += position_encoding(seq_len, dimension)
+        x = tgt + position_encoding(seq_len, dimension)
         for layer in self.layers:
-            tgt = layer(tgt, memory)
+            x = layer(x, memory)
 
-        return torch.softmax(self.linear(tgt), dim=-1)
+        return torch.softmax(self.linear(x), dim=-1)
 
 
 class Transformer(nn.Module):
